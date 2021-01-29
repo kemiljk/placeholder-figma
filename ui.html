@@ -1,0 +1,64 @@
+<head>
+  <link
+    href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+</head>
+
+<div class="fixed mx-auto w-full py-2 px-4">
+  <div class="w-full">
+    <h1 class="py-4 font-black text-gray-900 text-2xl leading-7">
+      Generate random placeholder text
+    </h1>
+  </div>
+  <div class="flex flex-col mx-auto space-y-2">
+    <button
+      class="w-full bg-indigo-500 px-4 py-2 rounded-lg text-indigo-100 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
+      id="create-address"
+    >
+      Generate Address
+    </button>
+    <button
+      class="w-full bg-indigo-500 px-4 py-2 rounded-lg text-indigo-100 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
+      id="create-name"
+    >
+      Generate Name
+    </button>
+    <button
+      class="w-full bg-indigo-500 px-4 py-2 rounded-lg text-indigo-100 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
+      id="create-number"
+    >
+      Generate Number
+    </button>
+    <button
+      class="w-full bg-gray-200 px-4 py-2 rounded-lg text-gray-700 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
+      id="cancel"
+    >
+      Cancel
+    </button>
+  </div>
+</div>
+
+<script>
+  if (document.getElementById("create-address")) {
+    document.getElementById("create-address").onclick = () => {
+      parent.postMessage({ pluginMessage: { type: "create-address" } }, "*");
+    };
+  }
+  if (document.getElementById("create-name")) {
+    document.getElementById("create-name").onclick = () => {
+      parent.postMessage({ pluginMessage: { type: "create-name" } }, "*");
+    };
+  }
+  if (document.getElementById("create-number")) {
+    document.getElementById("create-number").onclick = () => {
+      parent.postMessage({ pluginMessage: { type: "create-number" } }, "*");
+    };
+  }
+
+  if (document.getElementById("cancel")) {
+    document.getElementById("cancel").onclick = () => {
+      parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
+    };
+  }
+</script>
