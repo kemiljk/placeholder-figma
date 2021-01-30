@@ -12,29 +12,34 @@
     </h1>
   </div>
   <div class="flex flex-col mx-auto space-y-2">
+    <h3 class="py-2 font-bold text-gray-600 text-lg leading-5">Addresses</h3>
     <button
-      class="w-full bg-indigo-500 px-4 py-2 rounded-lg text-indigo-100 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
+      class="select-none w-full bg-indigo-500 px-4 py-2 rounded-lg text-indigo-100 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
       id="create-address"
     >
-      Generate Address
+      Generate UK Address
+    </button>
+    <h3 class="py-2 font-bold text-gray-600 text-lg leading-5">Names</h3>
+    <button
+      class="select-none w-full bg-indigo-500 px-4 py-2 rounded-lg text-indigo-100 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
+      id="create-name-title"
+    >
+      Generate Name + Title
     </button>
     <button
-      class="w-full bg-indigo-500 px-4 py-2 rounded-lg text-indigo-100 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
+      class="select-none w-full bg-indigo-500 px-4 py-2 rounded-lg text-indigo-100 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
       id="create-name"
     >
       Generate Name
     </button>
+    <h3 class="py-2 font-bold text-gray-600 text-lg leading-5">
+      Phone numbers
+    </h3>
     <button
-      class="w-full bg-indigo-500 px-4 py-2 rounded-lg text-indigo-100 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
+      class="select-none w-full bg-indigo-500 px-4 py-2 rounded-lg text-indigo-100 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
       id="create-number"
     >
-      Generate Number
-    </button>
-    <button
-      class="w-full bg-gray-200 px-4 py-2 rounded-lg text-gray-700 font-medium focus:outline-none focus:ring-2 ring-indigo-600"
-      id="cancel"
-    >
-      Cancel
+      Generate UK Phone Number
     </button>
   </div>
 </div>
@@ -45,6 +50,11 @@
       parent.postMessage({ pluginMessage: { type: "create-address" } }, "*");
     };
   }
+  if (document.getElementById("create-name-title")) {
+    document.getElementById("create-name-title").onclick = () => {
+      parent.postMessage({ pluginMessage: { type: "create-name-title" } }, "*");
+    };
+  }
   if (document.getElementById("create-name")) {
     document.getElementById("create-name").onclick = () => {
       parent.postMessage({ pluginMessage: { type: "create-name" } }, "*");
@@ -53,12 +63,6 @@
   if (document.getElementById("create-number")) {
     document.getElementById("create-number").onclick = () => {
       parent.postMessage({ pluginMessage: { type: "create-number" } }, "*");
-    };
-  }
-
-  if (document.getElementById("cancel")) {
-    document.getElementById("cancel").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
     };
   }
 </script>
