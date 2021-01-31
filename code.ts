@@ -1,16 +1,5 @@
-// This plugin will open a window to prompt the user to enter a number, and
-// it will then create that many rectangles on the screen.
-
-// This file holds the main code for the plugins. It has access to the *document*.
-// You can access browser APIs in the <script> tag inside "ui.html" which has a
-// full browser environment (see documentation).
-
-// This shows the HTML page in "ui.html".
 figma.showUI(__html__, { width: 300, height: 450 });
 
-// Calls to "parent.postMessage" from within the HTML page will trigger this
-// callback. The callback will be passed the "pluginMessage" property of the
-// posted message.
 figma.ui.onmessage = (msg) => {
   if (msg.type === "create-number") {
     function generate_random_digits() {
@@ -48,6 +37,19 @@ figma.ui.onmessage = (msg) => {
         }
         const text = figma.currentPage.selection[0];
         text.insertCharacters(0, generateNumber());
+      } else if (
+        figma.currentPage.selection.length > 1 &&
+        figma.currentPage.selection[0].type === "TEXT"
+      ) {
+        let items = figma.currentPage.selection;
+        const selection = figma.currentPage.selection[0];
+        await figma.loadFontAsync(selection.fontName as FontName);
+        for (const node of items) {
+          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+            node.characters = "";
+            node.insertCharacters(0, generateNumber());
+          }
+        }
       } else {
         const nodes = [];
         await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
@@ -60,9 +62,6 @@ figma.ui.onmessage = (msg) => {
     }
 
     number();
-    // .then((message: string | undefined) => {
-    //   figma.closePlugin(message);
-    // });
   }
 
   if (msg.type === "create-name-title") {
@@ -3854,6 +3853,19 @@ figma.ui.onmessage = (msg) => {
         }
         const text = figma.currentPage.selection[0];
         text.insertCharacters(0, generateName());
+      } else if (
+        figma.currentPage.selection.length > 1 &&
+        figma.currentPage.selection[0].type === "TEXT"
+      ) {
+        let items = figma.currentPage.selection;
+        const selection = figma.currentPage.selection[0];
+        await figma.loadFontAsync(selection.fontName as FontName);
+        for (const node of items) {
+          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+            node.characters = "";
+            node.insertCharacters(0, generateName());
+          }
+        }
       } else {
         const nodes = [];
         await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
@@ -3866,9 +3878,6 @@ figma.ui.onmessage = (msg) => {
     }
 
     name();
-    // .then((message: string | undefined) => {
-    //   figma.closePlugin(message);
-    // });
   }
 
   if (msg.type === "create-name") {
@@ -7641,6 +7650,19 @@ figma.ui.onmessage = (msg) => {
         }
         const text = figma.currentPage.selection[0];
         text.insertCharacters(0, generateNameNoTitle());
+      } else if (
+        figma.currentPage.selection.length > 1 &&
+        figma.currentPage.selection[0].type === "TEXT"
+      ) {
+        let items = figma.currentPage.selection;
+        const selection = figma.currentPage.selection[0];
+        await figma.loadFontAsync(selection.fontName as FontName);
+        for (const node of items) {
+          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+            node.characters = "";
+            node.insertCharacters(0, generateNameNoTitle());
+          }
+        }
       } else {
         const nodes = [];
         await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
@@ -7653,13 +7675,8 @@ figma.ui.onmessage = (msg) => {
     }
 
     nameNoTitle();
-    // .then((message: string | undefined) => {
-    //   figma.closePlugin(message);
-    // });
   }
 
-  // One way of distinguishing between different types of messages sent from
-  // your HTML page is to use an object with a "type" property like this.
   if (msg.type === "create-address") {
     function generate_random_number() {
       let num_low = 1;
@@ -13367,6 +13384,19 @@ figma.ui.onmessage = (msg) => {
         }
         const text = figma.currentPage.selection[0];
         text.insertCharacters(0, generateAddress());
+      } else if (
+        figma.currentPage.selection.length > 1 &&
+        figma.currentPage.selection[0].type === "TEXT"
+      ) {
+        let items = figma.currentPage.selection;
+        const selection = figma.currentPage.selection[0];
+        await figma.loadFontAsync(selection.fontName as FontName);
+        for (const node of items) {
+          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+            node.characters = "";
+            node.insertCharacters(0, generateAddress());
+          }
+        }
       } else {
         const nodes = [];
         await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
@@ -13379,12 +13409,5 @@ figma.ui.onmessage = (msg) => {
     }
 
     address();
-    // .then((message: string | undefined) => {
-    //   figma.closePlugin(message);
-    // });
-  }
-
-  if (msg.type === "cancel") {
-    figma.closePlugin();
   }
 };
