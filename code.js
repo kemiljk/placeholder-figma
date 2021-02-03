@@ -15695,39 +15695,18 @@ figma.ui.onmessage = (msg) => {
         }
         function firstName() {
             return __awaiter(this, void 0, void 0, function* () {
-                if (figma.currentPage.selection.length === 1 &&
-                    figma.currentPage.selection[0].type === "TEXT") {
-                    const node = figma.currentPage.selection[0];
-                    yield figma.loadFontAsync(node.fontName);
-                    const text = figma.currentPage.selection[0];
-                    if (figma.currentPage.selection.length > 0) {
-                        const textRange = figma.currentPage.selectedTextRange;
-                        text.deleteCharacters(textRange.start, textRange.end);
-                    }
-                    text.insertCharacters(0, insertFirstName(), "BEFORE");
-                }
-                else if (figma.currentPage.selection.length > 1 &&
+                if (figma.currentPage.selection.length > 0 &&
                     figma.currentPage.selection[0].type === "TEXT") {
                     let items = figma.currentPage.selection;
                     const selection = figma.currentPage.selection[0];
                     yield figma.loadFontAsync(selection.fontName);
                     for (const node of items) {
-                        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
-                            const selection = figma.currentPage.selection[0];
-                            const textRange = figma.currentPage.selectedTextRange;
-                            selection.deleteCharacters(textRange.start, textRange.end);
-                            selection.insertCharacters(0, insertFirstName(), "BEFORE");
+                        if (figma.currentPage.selection.length > 0 && node.type === "TEXT") {
+                            const textIn = node.characters;
+                            let textInParts = textIn.split(" ");
+                            node.characters = insertFirstName() + " " + textInParts[1];
                         }
                     }
-                }
-                else {
-                    const nodes = [];
-                    yield figma.loadFontAsync({ family: "Roboto", style: "Regular" });
-                    const text = figma.createText();
-                    text.insertCharacters(0, insertFirstName());
-                    nodes.push(text);
-                    figma.currentPage.selection = nodes;
-                    figma.viewport.scrollAndZoomIntoView(nodes);
                 }
             });
         }
@@ -16739,8 +16718,7 @@ figma.ui.onmessage = (msg) => {
                 "Zimmerman",
             ];
             for (let i = 0; i < string_length; i++) {
-                random_lastName =
-                    " " + lastName[Math.floor(Math.random() * lastName.length)];
+                random_lastName = lastName[Math.floor(Math.random() * lastName.length)];
             }
             return random_lastName;
         }
@@ -16749,39 +16727,18 @@ figma.ui.onmessage = (msg) => {
         }
         function lastName() {
             return __awaiter(this, void 0, void 0, function* () {
-                if (figma.currentPage.selection.length === 1 &&
-                    figma.currentPage.selection[0].type === "TEXT") {
-                    const node = figma.currentPage.selection[0];
-                    yield figma.loadFontAsync(node.fontName);
-                    const text = figma.currentPage.selection[0];
-                    if (figma.currentPage.selection.length > 0) {
-                        const textRange = figma.currentPage.selectedTextRange;
-                        text.deleteCharacters(textRange.start, textRange.end);
-                    }
-                    text.insertCharacters(text.characters.length, insertLastName(), "AFTER");
-                }
-                else if (figma.currentPage.selection.length > 1 &&
+                if (figma.currentPage.selection.length > 0 &&
                     figma.currentPage.selection[0].type === "TEXT") {
                     let items = figma.currentPage.selection;
                     const selection = figma.currentPage.selection[0];
                     yield figma.loadFontAsync(selection.fontName);
                     for (const node of items) {
-                        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
-                            const selection = figma.currentPage.selection[0];
-                            const textRange = figma.currentPage.selectedTextRange;
-                            selection.deleteCharacters(textRange.start, textRange.end);
+                        if (figma.currentPage.selection.length > 0 && node.type === "TEXT") {
+                            const textIn = node.characters;
+                            let textInParts = textIn.split(" ");
+                            node.characters = textInParts[0] + " " + insertLastName();
                         }
-                        selection.insertCharacters(selection.characters.length, insertLastName(), "AFTER");
                     }
-                }
-                else {
-                    const nodes = [];
-                    yield figma.loadFontAsync({ family: "Roboto", style: "Regular" });
-                    const text = figma.createText();
-                    text.insertCharacters(0, insertLastName());
-                    nodes.push(text);
-                    figma.currentPage.selection = nodes;
-                    figma.viewport.scrollAndZoomIntoView(nodes);
                 }
             });
         }

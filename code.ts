@@ -15701,50 +15701,27 @@ figma.ui.onmessage = (msg) => {
       }
       return random_firstName;
     }
-
     function insertFirstName() {
       return insert_firstName(3);
     }
 
     async function firstName(): Promise<string | undefined> {
       if (
-        figma.currentPage.selection.length === 1 &&
-        figma.currentPage.selection[0].type === "TEXT"
-      ) {
-        const node = figma.currentPage.selection[0];
-        await figma.loadFontAsync(node.fontName as FontName);
-        const text = figma.currentPage.selection[0];
-        if (figma.currentPage.selection.length > 0) {
-          const textRange = figma.currentPage.selectedTextRange;
-          text.deleteCharacters(textRange.start, textRange.end);
-        }
-        text.insertCharacters(0, insertFirstName(), "BEFORE");
-      } else if (
-        figma.currentPage.selection.length > 1 &&
+        figma.currentPage.selection.length > 0 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
-            const selection = figma.currentPage.selection[0];
-            const textRange = figma.currentPage.selectedTextRange;
-            selection.deleteCharacters(textRange.start, textRange.end);
-            selection.insertCharacters(0, insertFirstName(), "BEFORE");
+          if (figma.currentPage.selection.length > 0 && node.type === "TEXT") {
+            const textIn = node.characters;
+            let textInParts = textIn.split(" ");
+            node.characters = insertFirstName() + " " + textInParts[1];
           }
         }
-      } else {
-        const nodes = [];
-        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
-        const text = figma.createText();
-        text.insertCharacters(0, insertFirstName());
-        nodes.push(text);
-        figma.currentPage.selection = nodes;
-        figma.viewport.scrollAndZoomIntoView(nodes);
       }
     }
-
     firstName();
   }
 
@@ -16754,8 +16731,7 @@ figma.ui.onmessage = (msg) => {
         "Zimmerman",
       ];
       for (let i = 0; i < string_length; i++) {
-        random_lastName =
-          " " + lastName[Math.floor(Math.random() * lastName.length)];
+        random_lastName = lastName[Math.floor(Math.random() * lastName.length)];
       }
       return random_lastName;
     }
@@ -16766,51 +16742,21 @@ figma.ui.onmessage = (msg) => {
 
     async function lastName(): Promise<string | undefined> {
       if (
-        figma.currentPage.selection.length === 1 &&
-        figma.currentPage.selection[0].type === "TEXT"
-      ) {
-        const node = figma.currentPage.selection[0];
-        await figma.loadFontAsync(node.fontName as FontName);
-        const text = figma.currentPage.selection[0];
-        if (figma.currentPage.selection.length > 0) {
-          const textRange = figma.currentPage.selectedTextRange;
-          text.deleteCharacters(textRange.start, textRange.end);
-        }
-        text.insertCharacters(
-          text.characters.length,
-          insertLastName(),
-          "AFTER"
-        );
-      } else if (
-        figma.currentPage.selection.length > 1 &&
+        figma.currentPage.selection.length > 0 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
-            const selection = figma.currentPage.selection[0];
-            const textRange = figma.currentPage.selectedTextRange;
-            selection.deleteCharacters(textRange.start, textRange.end);
+          if (figma.currentPage.selection.length > 0 && node.type === "TEXT") {
+            const textIn = node.characters;
+            let textInParts = textIn.split(" ");
+            node.characters = textInParts[0] + " " + insertLastName();
           }
-          selection.insertCharacters(
-            selection.characters.length,
-            insertLastName(),
-            "AFTER"
-          );
         }
-      } else {
-        const nodes = [];
-        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
-        const text = figma.createText();
-        text.insertCharacters(0, insertLastName());
-        nodes.push(text);
-        figma.currentPage.selection = nodes;
-        figma.viewport.scrollAndZoomIntoView(nodes);
       }
     }
-
     lastName();
   }
 
