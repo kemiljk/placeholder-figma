@@ -15697,7 +15697,7 @@ figma.ui.onmessage = (msg) => {
       ];
       for (let i = 0; i < string_length; i++) {
         random_firstName =
-          firstName[Math.floor(Math.random() * firstName.length)] + " ";
+          firstName[Math.floor(Math.random() * firstName.length)];
       }
       return random_firstName;
     }
@@ -15713,9 +15713,11 @@ figma.ui.onmessage = (msg) => {
       ) {
         const node = figma.currentPage.selection[0];
         await figma.loadFontAsync(node.fontName as FontName);
-        if (figma.currentPage.selection.length > 0) {
-        }
         const text = figma.currentPage.selection[0];
+        if (figma.currentPage.selection.length > 0) {
+          const textRange = figma.currentPage.selectedTextRange;
+          text.deleteCharacters(textRange.start, textRange.end);
+        }
         text.insertCharacters(0, insertFirstName(), "BEFORE");
       } else if (
         figma.currentPage.selection.length > 1 &&
@@ -15727,6 +15729,8 @@ figma.ui.onmessage = (msg) => {
         for (const node of items) {
           if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
             const selection = figma.currentPage.selection[0];
+            const textRange = figma.currentPage.selectedTextRange;
+            selection.deleteCharacters(textRange.start, textRange.end);
             selection.insertCharacters(0, insertFirstName(), "BEFORE");
           }
         }
@@ -16767,9 +16771,11 @@ figma.ui.onmessage = (msg) => {
       ) {
         const node = figma.currentPage.selection[0];
         await figma.loadFontAsync(node.fontName as FontName);
-        if (figma.currentPage.selection.length > 0) {
-        }
         const text = figma.currentPage.selection[0];
+        if (figma.currentPage.selection.length > 0) {
+          const textRange = figma.currentPage.selectedTextRange;
+          text.deleteCharacters(textRange.start, textRange.end);
+        }
         text.insertCharacters(
           text.characters.length - 1,
           insertLastName(),
@@ -16785,6 +16791,8 @@ figma.ui.onmessage = (msg) => {
         for (const node of items) {
           if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
             const selection = figma.currentPage.selection[0];
+            const textRange = figma.currentPage.selectedTextRange;
+            selection.deleteCharacters(textRange.start, textRange.end);
             selection.insertCharacters(
               selection.characters.length - 1,
               insertLastName(),
