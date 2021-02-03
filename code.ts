@@ -16777,7 +16777,7 @@ figma.ui.onmessage = (msg) => {
           text.deleteCharacters(textRange.start, textRange.end);
         }
         text.insertCharacters(
-          text.characters.length - 1,
+          text.characters.length,
           insertLastName(),
           "AFTER"
         );
@@ -16793,12 +16793,12 @@ figma.ui.onmessage = (msg) => {
             const selection = figma.currentPage.selection[0];
             const textRange = figma.currentPage.selectedTextRange;
             selection.deleteCharacters(textRange.start, textRange.end);
-            selection.insertCharacters(
-              selection.characters.length - 1,
-              insertLastName(),
-              "AFTER"
-            );
           }
+          selection.insertCharacters(
+            selection.characters.length,
+            insertLastName(),
+            "AFTER"
+          );
         }
       } else {
         const nodes = [];

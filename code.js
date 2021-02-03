@@ -16758,7 +16758,7 @@ figma.ui.onmessage = (msg) => {
                         const textRange = figma.currentPage.selectedTextRange;
                         text.deleteCharacters(textRange.start, textRange.end);
                     }
-                    text.insertCharacters(text.characters.length - 1, insertLastName(), "AFTER");
+                    text.insertCharacters(text.characters.length, insertLastName(), "AFTER");
                 }
                 else if (figma.currentPage.selection.length > 1 &&
                     figma.currentPage.selection[0].type === "TEXT") {
@@ -16770,8 +16770,8 @@ figma.ui.onmessage = (msg) => {
                             const selection = figma.currentPage.selection[0];
                             const textRange = figma.currentPage.selectedTextRange;
                             selection.deleteCharacters(textRange.start, textRange.end);
-                            selection.insertCharacters(selection.characters.length - 1, insertLastName(), "AFTER");
                         }
+                        selection.insertCharacters(selection.characters.length, insertLastName(), "AFTER");
                     }
                 }
                 else {
