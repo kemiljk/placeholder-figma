@@ -1,4 +1,4 @@
-figma.showUI(__html__, { width: 300, height: 500 });
+figma.showUI(__html__, { width: 300, height: 475 });
 
 figma.ui.onmessage = (msg) => {
   if (msg.type === "create-number") {
@@ -25,7 +25,7 @@ figma.ui.onmessage = (msg) => {
       );
     }
 
-    async function number(): Promise<string | undefined> {
+    async function number() {
       if (
         figma.currentPage.selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
@@ -5300,7 +5300,7 @@ figma.ui.onmessage = (msg) => {
       return generate_random_email(3);
     }
 
-    async function email(): Promise<string | undefined> {
+    async function email() {
       if (
         figma.currentPage.selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
@@ -9116,7 +9116,7 @@ figma.ui.onmessage = (msg) => {
       return generate_random_title(1) + ". " + generate_random_name(3);
     }
 
-    async function name(): Promise<string | undefined> {
+    async function name() {
       if (
         figma.currentPage.selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
@@ -12913,7 +12913,7 @@ figma.ui.onmessage = (msg) => {
       return generate_random_name_no_title(3);
     }
 
-    async function nameNoTitle(): Promise<string | undefined> {
+    async function nameNoTitle() {
       if (
         figma.currentPage.selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
@@ -15705,7 +15705,7 @@ figma.ui.onmessage = (msg) => {
       return insert_firstName(3);
     }
 
-    async function firstName(): Promise<string | undefined> {
+    async function firstName() {
       if (
         figma.currentPage.selection.length > 0 &&
         figma.currentPage.selection[0].type === "TEXT"
@@ -16740,7 +16740,7 @@ figma.ui.onmessage = (msg) => {
       return insert_lastName(3);
     }
 
-    async function lastName(): Promise<string | undefined> {
+    async function lastName() {
       if (
         figma.currentPage.selection.length > 0 &&
         figma.currentPage.selection[0].type === "TEXT"
@@ -22455,7 +22455,7 @@ figma.ui.onmessage = (msg) => {
       );
     }
 
-    async function address(): Promise<string | undefined> {
+    async function address() {
       if (
         figma.currentPage.selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
