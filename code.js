@@ -22455,21 +22455,12 @@ figma.ui.onmessage = (msg) => {
                 }
                 else {
                     const nodes = [];
-                    let items = figma.currentPage.selection;
                     yield figma.loadFontAsync({ family: "Roboto", style: "Regular" });
-                    if (figma.currentPage.selection[0].type === "RECTANGLE" ||
-                        figma.currentPage.selection[0].type === "FRAME" ||
-                        figma.currentPage.selection[0].type === "GROUP" ||
-                        figma.currentPage.selection[0].type === "INSTANCE" ||
-                        figma.currentPage.selection[0].type === "COMPONENT") {
-                        for (const node of items) {
-                            const text = figma.createText();
-                            text.insertCharacters(0, generateAddress());
-                            nodes.push(node);
-                            figma.currentPage.selection = nodes;
-                            figma.viewport.scrollAndZoomIntoView(nodes);
-                        }
-                    }
+                    const text = figma.createText();
+                    text.insertCharacters(0, generateAddress());
+                    nodes.push(text);
+                    figma.currentPage.selection = nodes;
+                    figma.viewport.scrollAndZoomIntoView(nodes);
                 }
             });
         }
