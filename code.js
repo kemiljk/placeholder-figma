@@ -9,6 +9,82 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 figma.showUI(__html__, { width: 300, height: 475 });
 figma.ui.onmessage = (msg) => {
+    if (msg.type === "reset-address") {
+        function resetAddress() {
+            return __awaiter(this, void 0, void 0, function* () {
+                if (figma.currentPage.selection.length > 1 &&
+                    figma.currentPage.selection[0].type === "TEXT") {
+                    let items = figma.currentPage.selection;
+                    const selection = figma.currentPage.selection[0];
+                    yield figma.loadFontAsync(selection.fontName);
+                    for (const node of items) {
+                        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+                            node.characters = "";
+                            node.insertCharacters(0, "Address");
+                        }
+                    }
+                }
+            });
+        }
+        resetAddress();
+    }
+    if (msg.type === "reset-name") {
+        function resetName() {
+            return __awaiter(this, void 0, void 0, function* () {
+                if (figma.currentPage.selection.length > 1 &&
+                    figma.currentPage.selection[0].type === "TEXT") {
+                    let items = figma.currentPage.selection;
+                    const selection = figma.currentPage.selection[0];
+                    yield figma.loadFontAsync(selection.fontName);
+                    for (const node of items) {
+                        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+                            node.characters = "";
+                            node.insertCharacters(0, "Name");
+                        }
+                    }
+                }
+            });
+        }
+        resetName();
+    }
+    if (msg.type === "reset-number") {
+        function resetPhone() {
+            return __awaiter(this, void 0, void 0, function* () {
+                if (figma.currentPage.selection.length > 1 &&
+                    figma.currentPage.selection[0].type === "TEXT") {
+                    let items = figma.currentPage.selection;
+                    const selection = figma.currentPage.selection[0];
+                    yield figma.loadFontAsync(selection.fontName);
+                    for (const node of items) {
+                        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+                            node.characters = "";
+                            node.insertCharacters(0, "Phone");
+                        }
+                    }
+                }
+            });
+        }
+        resetPhone();
+    }
+    if (msg.type === "reset-email") {
+        function resetEmail() {
+            return __awaiter(this, void 0, void 0, function* () {
+                if (figma.currentPage.selection.length > 1 &&
+                    figma.currentPage.selection[0].type === "TEXT") {
+                    let items = figma.currentPage.selection;
+                    const selection = figma.currentPage.selection[0];
+                    yield figma.loadFontAsync(selection.fontName);
+                    for (const node of items) {
+                        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+                            node.characters = "";
+                            node.insertCharacters(0, "Email");
+                        }
+                    }
+                }
+            });
+        }
+        resetEmail();
+    }
     if (msg.type === "create-number") {
         function generate_random_digits() {
             let num_low = 1;

@@ -1,6 +1,82 @@
 figma.showUI(__html__, { width: 300, height: 475 });
 
 figma.ui.onmessage = (msg) => {
+  if (msg.type === "reset-address") {
+    async function resetAddress() {
+      if (
+        figma.currentPage.selection.length > 1 &&
+        figma.currentPage.selection[0].type === "TEXT"
+      ) {
+        let items = figma.currentPage.selection;
+        const selection = figma.currentPage.selection[0];
+        await figma.loadFontAsync(selection.fontName as FontName);
+        for (const node of items) {
+          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+            node.characters = "";
+            node.insertCharacters(0, "Address");
+          }
+        }
+      }
+    }
+    resetAddress();
+  }
+  if (msg.type === "reset-name") {
+    async function resetName() {
+      if (
+        figma.currentPage.selection.length > 1 &&
+        figma.currentPage.selection[0].type === "TEXT"
+      ) {
+        let items = figma.currentPage.selection;
+        const selection = figma.currentPage.selection[0];
+        await figma.loadFontAsync(selection.fontName as FontName);
+        for (const node of items) {
+          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+            node.characters = "";
+            node.insertCharacters(0, "Name");
+          }
+        }
+      }
+    }
+    resetName();
+  }
+  if (msg.type === "reset-number") {
+    async function resetPhone() {
+      if (
+        figma.currentPage.selection.length > 1 &&
+        figma.currentPage.selection[0].type === "TEXT"
+      ) {
+        let items = figma.currentPage.selection;
+        const selection = figma.currentPage.selection[0];
+        await figma.loadFontAsync(selection.fontName as FontName);
+        for (const node of items) {
+          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+            node.characters = "";
+            node.insertCharacters(0, "Phone");
+          }
+        }
+      }
+    }
+    resetPhone();
+  }
+  if (msg.type === "reset-email") {
+    async function resetEmail() {
+      if (
+        figma.currentPage.selection.length > 1 &&
+        figma.currentPage.selection[0].type === "TEXT"
+      ) {
+        let items = figma.currentPage.selection;
+        const selection = figma.currentPage.selection[0];
+        await figma.loadFontAsync(selection.fontName as FontName);
+        for (const node of items) {
+          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+            node.characters = "";
+            node.insertCharacters(0, "Email");
+          }
+        }
+      }
+    }
+    resetEmail();
+  }
   if (msg.type === "create-number") {
     function generate_random_digits() {
       let num_low = 1;
