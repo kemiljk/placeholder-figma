@@ -128,7 +128,7 @@ figma.ui.onmessage = (msg) => {
         }
       } else {
         const nodes = [];
-        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
+        await figma.loadFontAsync({ family: "Inter", style: "Regular" });
         const text = figma.createText();
         text.insertCharacters(0, generateNumber());
         nodes.push(text);
@@ -5403,7 +5403,7 @@ figma.ui.onmessage = (msg) => {
         }
       } else {
         const nodes = [];
-        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
+        await figma.loadFontAsync({ family: "Inter", style: "Regular" });
         const text = figma.createText();
         text.insertCharacters(0, generateEmail());
         nodes.push(text);
@@ -9219,7 +9219,7 @@ figma.ui.onmessage = (msg) => {
         }
       } else {
         const nodes = [];
-        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
+        await figma.loadFontAsync({ family: "Inter", style: "Regular" });
         const text = figma.createText();
         text.insertCharacters(0, generateName());
         nodes.push(text);
@@ -13016,7 +13016,7 @@ figma.ui.onmessage = (msg) => {
         }
       } else {
         const nodes = [];
-        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
+        await figma.loadFontAsync({ family: "Inter", style: "Regular" });
         const text = figma.createText();
         text.insertCharacters(0, generateNameNoTitle());
         nodes.push(text);
@@ -22558,7 +22558,7 @@ figma.ui.onmessage = (msg) => {
         }
       } else {
         const nodes = [];
-        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
+        await figma.loadFontAsync({ family: "Inter", style: "Regular" });
         const text = figma.createText();
         text.insertCharacters(0, generateAddress());
         nodes.push(text);
