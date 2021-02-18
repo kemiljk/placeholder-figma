@@ -3,18 +3,13 @@ figma.showUI(__html__, { width: 300, height: 475 });
 figma.ui.onmessage = (msg) => {
   if (msg.type === "reset-address") {
     async function resetAddress() {
-      if (
-        figma.currentPage.selection.length > 1 &&
-        figma.currentPage.selection[0].type === "TEXT"
-      ) {
-        let items = figma.currentPage.selection;
-        const selection = figma.currentPage.selection[0];
-        await figma.loadFontAsync(selection.fontName as FontName);
-        for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
-            node.characters = "";
-            node.insertCharacters(0, "Address");
-          }
+      let items = figma.currentPage.selection;
+      for (const node of items) {
+        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+          await figma.loadFontAsync(node.fontName as FontName);
+          node.characters = "";
+          node.insertCharacters(0, "Address");
+          console.log(node.characters);
         }
       }
     }
@@ -22,18 +17,12 @@ figma.ui.onmessage = (msg) => {
   }
   if (msg.type === "reset-name") {
     async function resetName() {
-      if (
-        figma.currentPage.selection.length > 1 &&
-        figma.currentPage.selection[0].type === "TEXT"
-      ) {
-        let items = figma.currentPage.selection;
-        const selection = figma.currentPage.selection[0];
-        await figma.loadFontAsync(selection.fontName as FontName);
-        for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
-            node.characters = "";
-            node.insertCharacters(0, "Name");
-          }
+      let items = figma.currentPage.selection;
+      for (const node of items) {
+        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+          await figma.loadFontAsync(node.fontName as FontName);
+          node.characters = "";
+          node.insertCharacters(0, "Name");
         }
       }
     }
@@ -41,18 +30,12 @@ figma.ui.onmessage = (msg) => {
   }
   if (msg.type === "reset-number") {
     async function resetPhone() {
-      if (
-        figma.currentPage.selection.length > 1 &&
-        figma.currentPage.selection[0].type === "TEXT"
-      ) {
-        let items = figma.currentPage.selection;
-        const selection = figma.currentPage.selection[0];
-        await figma.loadFontAsync(selection.fontName as FontName);
-        for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
-            node.characters = "";
-            node.insertCharacters(0, "Phone");
-          }
+      let items = figma.currentPage.selection;
+      for (const node of items) {
+        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+          await figma.loadFontAsync(node.fontName as FontName);
+          node.characters = "";
+          node.insertCharacters(0, "Phone");
         }
       }
     }
@@ -60,18 +43,12 @@ figma.ui.onmessage = (msg) => {
   }
   if (msg.type === "reset-email") {
     async function resetEmail() {
-      if (
-        figma.currentPage.selection.length > 1 &&
-        figma.currentPage.selection[0].type === "TEXT"
-      ) {
-        let items = figma.currentPage.selection;
-        const selection = figma.currentPage.selection[0];
-        await figma.loadFontAsync(selection.fontName as FontName);
-        for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
-            node.characters = "";
-            node.insertCharacters(0, "Email");
-          }
+      let items = figma.currentPage.selection;
+      for (const node of items) {
+        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+          await figma.loadFontAsync(node.fontName as FontName);
+          node.characters = "";
+          node.insertCharacters(0, "Email");
         }
       }
     }
@@ -128,7 +105,7 @@ figma.ui.onmessage = (msg) => {
         }
       } else {
         const nodes = [];
-        await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
         const text = figma.createText();
         text.insertCharacters(0, generateNumber());
         nodes.push(text);
@@ -5403,7 +5380,7 @@ figma.ui.onmessage = (msg) => {
         }
       } else {
         const nodes = [];
-        await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
         const text = figma.createText();
         text.insertCharacters(0, generateEmail());
         nodes.push(text);
@@ -9219,7 +9196,7 @@ figma.ui.onmessage = (msg) => {
         }
       } else {
         const nodes = [];
-        await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
         const text = figma.createText();
         text.insertCharacters(0, generateName());
         nodes.push(text);
@@ -13016,7 +12993,7 @@ figma.ui.onmessage = (msg) => {
         }
       } else {
         const nodes = [];
-        await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
         const text = figma.createText();
         text.insertCharacters(0, generateNameNoTitle());
         nodes.push(text);
@@ -22558,7 +22535,7 @@ figma.ui.onmessage = (msg) => {
         }
       } else {
         const nodes = [];
-        await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
         const text = figma.createText();
         text.insertCharacters(0, generateAddress());
         nodes.push(text);
