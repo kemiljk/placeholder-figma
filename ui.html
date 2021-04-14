@@ -18,135 +18,199 @@
   <div class="flex flex-col mx-auto space-y-2 pt-2 mb-8">
     <h3 class="py-2 font-bold text-gray-600 text-sm leading-5">Addresses</h3>
     <button
-      class="select-none w-full border-2 border-gray-600 px-4 py-2 rounded text-sm text-grey-800 hover:bg-gray-200 focus:outline-none focus:ring-2 ring-gray-600"
+      class="select-none w-full bg-indigo-500 px-4 py-2 rounded-lg text-sm text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 ring-indigo-900"
       id="create-address"
     >
-      Generate UK Address
+      UK Address
     </button>
     <button
-      class="select-none w-full bg-gray-200 px-3 py-2 rounded text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
+      class="select-none w-full bg-gray-200 px-3 py-2 rounded-lg text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
       id="reset-address"
     >
       Set to "Address"
     </button>
     <h3 class="py-2 font-bold text-gray-600 text-sm leading-5">Names</h3>
     <button
-      class="select-none w-full border-2 border-gray-600 px-4 py-2 rounded text-sm text-grey-800 hover:bg-gray-200 focus:outline-none focus:ring-2 ring-gray-600"
+      class="select-none w-full bg-indigo-500 px-4 py-2 rounded-lg text-sm text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 ring-indigo-900"
       id="create-name-title"
     >
-      Generate Full Name + Title
+      Full Name + Title
     </button>
     <button
-      class="select-none w-full border-2 border-gray-600 px-4 py-2 rounded text-sm text-grey-800 hover:bg-gray-200 focus:outline-none focus:ring-2 ring-gray-600"
+      class="select-none w-full bg-indigo-500 px-4 py-2 rounded-lg text-sm text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 ring-indigo-900"
       id="create-name"
     >
-      Generate Full Name
+      Full Name
     </button>
+    <div class="flex items-center justify-between space-x-2">
+      <button
+        class="select-none w-full bg-gray-200 px-3 py-2 rounded-lg text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
+        id="create-first-name"
+      >
+        First Name
+      </button>
+      <button
+        class="select-none w-full bg-gray-200 px-3 py-2 rounded-lg text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
+        id="create-last-name"
+      >
+        Last Name
+      </button>
+    </div>
+    <div class="flex items-center justify-between space-x-2">
+      <button
+        class="select-none w-full bg-gray-200 px-3 py-2 rounded-lg text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
+        id="insert-firstName"
+        >
+        Swap First Name
+      </button>
+      <button
+        class="select-none w-full bg-gray-200 px-3 py-2 rounded-lg text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
+        id="insert-lastName"
+        >
+        Swap Last Name
+      </button>
+    </div>
     <button
-      class="select-none w-full bg-gray-200 px-3 py-2 rounded text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
+      class="select-none w-full bg-gray-200 px-3 py-2 rounded-lg text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
       id="reset-name"
     >
       Set to "Name"
     </button>
-    <div class="flex items-center justify-between space-x-2">
+      <h3 class="py-2 font-bold text-gray-600 text-sm leading-5">
+        Phone numbers
+      </h3>
       <button
-        class="select-none w-full bg-gray-200 px-3 py-2 rounded text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
-        id="insert-firstName"
+        class="select-none w-full bg-indigo-500 px-4 py-2 rounded-lg text-sm text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 ring-indigo-900"
+        id="create-number"
       >
-        Swap First Name
+        UK Phone Number
       </button>
       <button
-        class="select-none w-full bg-gray-200 px-3 py-2 rounded text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
-        id="insert-lastName"
+        class="select-none w-full bg-gray-200 px-3 py-2 rounded-lg text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
+        id="reset-number"
       >
-        Swap Last Name
+        Set to "Phone"
+      </button>
+      <h3 class="py-2 font-bold text-gray-600 text-sm leading-5">Emails</h3>
+      <button
+        class="select-none w-full bg-indigo-500 px-4 py-2 rounded-lg text-sm text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 ring-indigo-900"
+        id="create-email"
+      >
+        Email
+      </button>
+      <!-- <div class="flex items-center justify-between space-x-2"> -->
+        <button
+          class="select-none w-full bg-gray-200 px-3 py-2 rounded-lg text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
+          id="swap-firstName"
+          >
+          Swap First Name
+        </button>
+        <!-- <button
+          class="select-none w-full bg-gray-200 px-3 py-2 rounded-lg text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
+          id="swap-domain"
+          >
+          Swap Domain
+        </button> -->
+      <!-- </div> -->
+      <button
+        class="select-none w-full bg-gray-200 px-3 py-2 rounded-lg text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
+        id="reset-email"
+      >
+        Set to "Email"
       </button>
     </div>
-    <h3 class="py-2 font-bold text-gray-600 text-sm leading-5">
-      Phone numbers
-    </h3>
-    <button
-      class="select-none w-full border-2 border-gray-600 px-4 py-2 rounded text-sm text-grey-800 hover:bg-gray-200 focus:outline-none focus:ring-2 ring-gray-600"
-      id="create-number"
-    >
-      Generate UK Phone Number
-    </button>
-    <button
-      class="select-none w-full bg-gray-200 px-3 py-2 rounded text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
-      id="reset-number"
-    >
-      Set to "Phone"
-    </button>
-    <h3 class="py-2 font-bold text-gray-600 text-sm leading-5">Emails</h3>
-    <button
-      class="select-none w-full border-2 border-gray-600 px-4 py-2 rounded text-sm text-grey-800 hover:bg-gray-200 focus:outline-none focus:ring-2 ring-gray-600"
-      id="create-email"
-    >
-      Generate Email
-    </button>
-    <button
-      class="select-none w-full bg-gray-200 px-3 py-2 rounded text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
-      id="reset-email"
-    >
-      Set to "Email"
-    </button>
   </div>
-</div>
 
-<script>
-  if (document.getElementById("create-address")) {
-    document.getElementById("create-address").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "create-address" } }, "*");
-    };
-  }
-  if (document.getElementById("reset-address")) {
-    document.getElementById("reset-address").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "reset-address" } }, "*");
-    };
-  }
-  if (document.getElementById("create-name-title")) {
-    document.getElementById("create-name-title").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "create-name-title" } }, "*");
-    };
-  }
-  if (document.getElementById("create-name")) {
-    document.getElementById("create-name").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "create-name" } }, "*");
-    };
-  }
-  if (document.getElementById("insert-firstName")) {
-    document.getElementById("insert-firstName").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "insert-firstName" } }, "*");
-    };
-  }
-  if (document.getElementById("insert-lastName")) {
-    document.getElementById("insert-lastName").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "insert-lastName" } }, "*");
-    };
-  }
-  if (document.getElementById("reset-name")) {
-    document.getElementById("reset-name").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "reset-name" } }, "*");
-    };
-  }
-  if (document.getElementById("create-number")) {
-    document.getElementById("create-number").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "create-number" } }, "*");
-    };
-  }
-  if (document.getElementById("reset-number")) {
-    document.getElementById("reset-number").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "reset-number" } }, "*");
-    };
-  }
-  if (document.getElementById("create-email")) {
-    document.getElementById("create-email").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "create-email" } }, "*");
-    };
-  }
-  if (document.getElementById("reset-email")) {
-    document.getElementById("reset-email").onclick = () => {
-      parent.postMessage({ pluginMessage: { type: "reset-email" } }, "*");
-    };
-  }
-</script>
+  <script>
+    if (document.getElementById("create-address")) {
+      document.getElementById("create-address").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "create-address" } }, "*");
+      };
+    }
+    if (document.getElementById("reset-address")) {
+      document.getElementById("reset-address").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "reset-address" } }, "*");
+      };
+    }
+    if (document.getElementById("create-name-title")) {
+      document.getElementById("create-name-title").onclick = () => {
+        parent.postMessage(
+          { pluginMessage: { type: "create-name-title" } },
+          "*"
+        );
+      };
+    }
+    if (document.getElementById("create-name")) {
+      document.getElementById("create-name").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "create-name" } }, "*");
+      };
+    }
+    if (document.getElementById("create-first-name")) {
+      document.getElementById("create-first-name").onclick = () => {
+        parent.postMessage(
+          { pluginMessage: { type: "create-first-name" } },
+          "*"
+        );
+      };
+    }
+    if (document.getElementById("create-last-name")) {
+      document.getElementById("create-last-name").onclick = () => {
+        parent.postMessage(
+          { pluginMessage: { type: "create-last-name" } },
+          "*"
+        );
+      };
+    }
+    if (document.getElementById("insert-firstName")) {
+      document.getElementById("insert-firstName").onclick = () => {
+        parent.postMessage(
+          { pluginMessage: { type: "insert-firstName" } },
+          "*"
+        );
+      };
+    }
+    if (document.getElementById("insert-lastName")) {
+      document.getElementById("insert-lastName").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "insert-lastName" } }, "*");
+      };
+    }
+    if (document.getElementById("swap-firstName")) {
+      document.getElementById("swap-firstName").onclick = () => {
+        parent.postMessage(
+          { pluginMessage: { type: "swap-firstName" } },
+          "*"
+        );
+      };
+    }
+    // if (document.getElementById("swap-domain")) {
+    //   document.getElementById("swap-domain").onclick = () => {
+    //     parent.postMessage({ pluginMessage: { type: "swap-domain" } }, "*");
+    //   };
+    // }
+    if (document.getElementById("reset-name")) {
+      document.getElementById("reset-name").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "reset-name" } }, "*");
+      };
+    }
+    if (document.getElementById("create-number")) {
+      document.getElementById("create-number").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "create-number" } }, "*");
+      };
+    }
+    if (document.getElementById("reset-number")) {
+      document.getElementById("reset-number").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "reset-number" } }, "*");
+      };
+    }
+    if (document.getElementById("create-email")) {
+      document.getElementById("create-email").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "create-email" } }, "*");
+      };
+    }
+    if (document.getElementById("reset-email")) {
+      document.getElementById("reset-email").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "reset-email" } }, "*");
+      };
+    }
+  </script>
+</div>
