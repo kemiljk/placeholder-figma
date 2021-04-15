@@ -118,6 +118,19 @@
       >
         Set to "Email"
       </button>
+      <h3 class="py-2 font-bold text-gray-600 text-sm leading-5">Dates</h3>
+      <button
+      class="select-none w-full bg-indigo-500 px-4 py-2 rounded-lg text-sm text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 ring-indigo-900"
+      id="create-date"
+      >
+      Date
+    </button>
+    <button
+      class="select-none w-full bg-gray-200 px-3 py-2 rounded-lg text-gray-900 text-xs focus:outline-none focus:ring-2 ring-gray-600"
+      id="reset-date"
+    >
+      Set to "Date"
+    </button>
     </div>
   </div>
 
@@ -210,6 +223,16 @@
     if (document.getElementById("reset-email")) {
       document.getElementById("reset-email").onclick = () => {
         parent.postMessage({ pluginMessage: { type: "reset-email" } }, "*");
+      };
+    }
+    if (document.getElementById("create-date")) {
+      document.getElementById("create-date").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "create-date" } }, "*");
+      };
+    }
+    if (document.getElementById("reset-date")) {
+      document.getElementById("reset-date").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "reset-date" } }, "*");
       };
     }
   </script>

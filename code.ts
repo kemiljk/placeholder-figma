@@ -1,11 +1,13 @@
 figma.showUI(__html__, { width: 300, height: 475 });
 
 figma.ui.onmessage = (msg) => {
+  const { selection } = figma.currentPage;
+
   if (msg.type === "reset-address") {
     async function resetAddress() {
       let items = figma.currentPage.selection;
       for (const node of items) {
-        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+        if (selection.length >= 1 && node.type === "TEXT") {
           await figma.loadFontAsync(node.fontName as FontName);
           node.characters = "";
           node.insertCharacters(0, "Address");
@@ -19,7 +21,7 @@ figma.ui.onmessage = (msg) => {
     async function resetName() {
       let items = figma.currentPage.selection;
       for (const node of items) {
-        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+        if (selection.length >= 1 && node.type === "TEXT") {
           await figma.loadFontAsync(node.fontName as FontName);
           node.characters = "";
           node.insertCharacters(0, "Name");
@@ -32,7 +34,7 @@ figma.ui.onmessage = (msg) => {
     async function resetPhone() {
       let items = figma.currentPage.selection;
       for (const node of items) {
-        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+        if (selection.length >= 1 && node.type === "TEXT") {
           await figma.loadFontAsync(node.fontName as FontName);
           node.characters = "";
           node.insertCharacters(0, "Phone");
@@ -41,11 +43,25 @@ figma.ui.onmessage = (msg) => {
     }
     resetPhone();
   }
+  if (msg.type === "reset-date") {
+    async function resetDate() {
+      let items = figma.currentPage.selection;
+      for (const node of items) {
+        if (selection.length >= 1 && node.type === "TEXT") {
+          await figma.loadFontAsync(node.fontName as FontName);
+          node.characters = "";
+          node.insertCharacters(0, "Date");
+        }
+      }
+    }
+    resetDate();
+  }
+
   if (msg.type === "reset-email") {
     async function resetEmail() {
       let items = figma.currentPage.selection;
       for (const node of items) {
-        if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+        if (selection.length >= 1 && node.type === "TEXT") {
           await figma.loadFontAsync(node.fontName as FontName);
           node.characters = "";
           node.insertCharacters(0, "Email");
@@ -80,25 +96,25 @@ figma.ui.onmessage = (msg) => {
 
     async function number() {
       if (
-        figma.currentPage.selection.length === 1 &&
+        selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         const node = figma.currentPage.selection[0];
         await figma.loadFontAsync(node.fontName as FontName);
-        if (figma.currentPage.selection.length > 0) {
+        if (selection.length > 0) {
           figma.currentPage.selection[0].characters = "";
         }
         const text = figma.currentPage.selection[0];
         text.insertCharacters(0, generateNumber());
       } else if (
-        figma.currentPage.selection.length > 1 &&
+        selection.length > 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+          if (selection.length >= 1 && node.type === "TEXT") {
             node.characters = "";
             node.insertCharacters(0, generateNumber());
           }
@@ -115,6 +131,56 @@ figma.ui.onmessage = (msg) => {
     }
 
     number();
+  }
+  if (msg.type === "create-date") {
+    function randomDate(start, end) {
+      return new Date(
+        start.getTime() + Math.random() * (end.getTime() - start.getTime())
+      ).toDateString();
+    }
+
+    async function date() {
+      if (
+        selection.length === 1 &&
+        figma.currentPage.selection[0].type === "TEXT"
+      ) {
+        const node = figma.currentPage.selection[0];
+        await figma.loadFontAsync(node.fontName as FontName);
+        if (selection.length > 0) {
+          figma.currentPage.selection[0].characters = "";
+        }
+        const text = figma.currentPage.selection[0];
+        text.insertCharacters(
+          0,
+          randomDate(new Date(2021, 0, 1), new Date(2021, 12, 31))
+        );
+      } else if (
+        selection.length > 1 &&
+        figma.currentPage.selection[0].type === "TEXT"
+      ) {
+        const selected = figma.currentPage.selection[0];
+        await figma.loadFontAsync(selected.fontName as FontName);
+        for (const node of selection) {
+          if (selection.length >= 1 && node.type === "TEXT") {
+            node.characters = "";
+            node.insertCharacters(
+              0,
+              randomDate(new Date(2021, 0, 1), new Date(2021, 12, 31))
+            );
+          }
+        }
+      } else {
+        const nodes = [];
+        await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
+        const text = figma.createText();
+        text.insertCharacters(0, randomDate(new Date(2021, 0, 1), new Date()));
+        nodes.push(text);
+        figma.currentPage.selection = nodes;
+        figma.viewport.scrollAndZoomIntoView(nodes);
+      }
+    }
+
+    date();
   }
 
   if (msg.type === "create-email") {
@@ -5355,25 +5421,25 @@ figma.ui.onmessage = (msg) => {
 
     async function email() {
       if (
-        figma.currentPage.selection.length === 1 &&
+        selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         const node = figma.currentPage.selection[0];
         await figma.loadFontAsync(node.fontName as FontName);
-        if (figma.currentPage.selection.length > 0) {
+        if (selection.length > 0) {
           figma.currentPage.selection[0].characters = "";
         }
         const text = figma.currentPage.selection[0];
         text.insertCharacters(0, generateEmail());
       } else if (
-        figma.currentPage.selection.length > 1 &&
+        selection.length > 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+          if (selection.length >= 1 && node.type === "TEXT") {
             node.characters = "";
             node.insertCharacters(0, generateEmail());
           }
@@ -9152,25 +9218,25 @@ figma.ui.onmessage = (msg) => {
 
     async function nameNoTitle() {
       if (
-        figma.currentPage.selection.length === 1 &&
+        selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         const node = figma.currentPage.selection[0];
         await figma.loadFontAsync(node.fontName as FontName);
-        if (figma.currentPage.selection.length > 0) {
+        if (selection.length > 0) {
           figma.currentPage.selection[0].characters = "";
         }
         const text = figma.currentPage.selection[0];
         text.insertCharacters(0, generateNameNoTitle());
       } else if (
-        figma.currentPage.selection.length > 1 &&
+        selection.length > 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+          if (selection.length >= 1 && node.type === "TEXT") {
             node.characters = "";
             node.insertCharacters(0, generateNameNoTitle());
           }
@@ -12968,25 +13034,25 @@ figma.ui.onmessage = (msg) => {
 
     async function name() {
       if (
-        figma.currentPage.selection.length === 1 &&
+        selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         const node = figma.currentPage.selection[0];
         await figma.loadFontAsync(node.fontName as FontName);
-        if (figma.currentPage.selection.length > 0) {
+        if (selection.length > 0) {
           figma.currentPage.selection[0].characters = "";
         }
         const text = figma.currentPage.selection[0];
         text.insertCharacters(0, generateName());
       } else if (
-        figma.currentPage.selection.length > 1 &&
+        selection.length > 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+          if (selection.length >= 1 && node.type === "TEXT") {
             node.characters = "";
             node.insertCharacters(0, generateName());
           }
@@ -14022,25 +14088,25 @@ figma.ui.onmessage = (msg) => {
 
     async function randomLastName() {
       if (
-        figma.currentPage.selection.length === 1 &&
+        selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         const node = figma.currentPage.selection[0];
         await figma.loadFontAsync(node.fontName as FontName);
-        if (figma.currentPage.selection.length > 0) {
+        if (selection.length > 0) {
           figma.currentPage.selection[0].characters = "";
         }
         const text = figma.currentPage.selection[0];
         text.insertCharacters(0, generateRandomLastName());
       } else if (
-        figma.currentPage.selection.length > 1 &&
+        selection.length > 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+          if (selection.length >= 1 && node.type === "TEXT") {
             node.characters = "";
             node.insertCharacters(0, generateRandomLastName());
           }
@@ -16814,25 +16880,25 @@ figma.ui.onmessage = (msg) => {
 
     async function randomFirstName() {
       if (
-        figma.currentPage.selection.length === 1 &&
+        selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         const node = figma.currentPage.selection[0];
         await figma.loadFontAsync(node.fontName as FontName);
-        if (figma.currentPage.selection.length > 0) {
+        if (selection.length > 0) {
           figma.currentPage.selection[0].characters = "";
         }
         const text = figma.currentPage.selection[0];
         text.insertCharacters(0, generateRandomFirstName());
       } else if (
-        figma.currentPage.selection.length > 1 &&
+        selection.length > 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+          if (selection.length >= 1 && node.type === "TEXT") {
             node.characters = "";
             node.insertCharacters(0, generateRandomFirstName());
           }
@@ -19606,14 +19672,14 @@ figma.ui.onmessage = (msg) => {
 
     async function firstName() {
       if (
-        figma.currentPage.selection.length > 0 &&
+        selection.length > 0 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length > 0 && node.type === "TEXT") {
+          if (selection.length > 0 && node.type === "TEXT") {
             const textIn = node.characters;
             let textInParts = textIn.split(" ");
             node.characters = insertFirstName() + " " + textInParts[1];
@@ -22379,14 +22445,14 @@ figma.ui.onmessage = (msg) => {
 
     async function swapRandomfirstName() {
       if (
-        figma.currentPage.selection.length > 0 &&
+        selection.length > 0 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length > 0 && node.type === "TEXT") {
+          if (selection.length > 0 && node.type === "TEXT") {
             const textIn = node.characters;
             let textInParts = textIn.split("@");
             node.characters = swapFirstName() + "@" + textInParts[1];
@@ -23414,14 +23480,14 @@ figma.ui.onmessage = (msg) => {
 
     async function lastName() {
       if (
-        figma.currentPage.selection.length > 0 &&
+        selection.length > 0 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length > 0 && node.type === "TEXT") {
+          if (selection.length > 0 && node.type === "TEXT") {
             const textIn = node.characters;
             let textInParts = textIn.split(" ");
             node.characters = textInParts[0] + " " + insertLastName();
@@ -29129,25 +29195,25 @@ figma.ui.onmessage = (msg) => {
 
     async function address() {
       if (
-        figma.currentPage.selection.length === 1 &&
+        selection.length === 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         const node = figma.currentPage.selection[0];
         await figma.loadFontAsync(node.fontName as FontName);
-        if (figma.currentPage.selection.length > 0) {
+        if (selection.length > 0) {
           figma.currentPage.selection[0].characters = "";
         }
         const text = figma.currentPage.selection[0];
         text.insertCharacters(0, generateAddress());
       } else if (
-        figma.currentPage.selection.length > 1 &&
+        selection.length > 1 &&
         figma.currentPage.selection[0].type === "TEXT"
       ) {
         let items = figma.currentPage.selection;
         const selection = figma.currentPage.selection[0];
         await figma.loadFontAsync(selection.fontName as FontName);
         for (const node of items) {
-          if (figma.currentPage.selection.length >= 1 && node.type === "TEXT") {
+          if (selection.length >= 1 && node.type === "TEXT") {
             node.characters = "";
             node.insertCharacters(0, generateAddress());
           }
